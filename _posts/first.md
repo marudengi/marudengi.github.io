@@ -1,5 +1,4 @@
 # Test Page
 
 > new posting page
-> 
->![](../../images/cat.png)
+> ![](../images/2021-12-09-17-04-28.png)
