@@ -2,7 +2,7 @@ title: Algorithm Practice
 author: marudengi
 email: dame95@naver.com
 description: > # this means to ignore newlines until "show_exerpts:"
-코딩테스트 대비 알고리즘 공부를 위한 블로그입니다.
+  코딩테스트 대비 알고리즘 공부를 위한 블로그입니다.
 show_excerpts: true # set to true to show excerpts on the homepage
 
 # Minima date format
@@ -24,11 +24,11 @@ plainwhite:
     - post
   # generate social links in footer
   social_links:
-    twitter: 
+    # twitter: 
     github:  marudengi
-    linkedIn: 
+    # linkedIn: 
     #dribbble: jekyll
-    #flickr:   jekyll
+    # flickr:   jekyll
     instagram: seongsuhyeon50
     #pinterest: jekyll
     #youtube: jekyll
