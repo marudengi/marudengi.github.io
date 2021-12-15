@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "2. Implementation"
+title:  "2. Implementation Algorithm"
 date:   2021-12-15 22:08:00 +0900
 categories: Algorithm Theory Implementation Python
 ---
