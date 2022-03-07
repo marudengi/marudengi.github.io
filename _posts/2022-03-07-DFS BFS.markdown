@@ -1,0 +1,116 @@
+---
+layout: post
+title:  "3. Greedy Algorithm"
+date:   2022-03-07 22:42:00 +0900
+categories: Algorithm Theory DFS BFS Python
+---
+
+* 스택, 큐, 재귀에 대한 이해가 필요
+* DFS : 깊이 우선 탐색 알고리즘(재귀, 스택)
+* BFS : 넓이 우선 탐색 알고리즘(반복, 큐) - deque 필요
+* 일반적으로 BFS가 DFS보다 수행시간이 빠름
+
+***
+
+## 1.1 음료수 얼려 먹기
+
+얼음틀 모양이 주어졌을 때 한번에 만들 수 있는 아이스크림 개수를 구하는 게임
+
+1. N x M 크기의 얼음틀이 주어진다.
+2. 구멍이 뚫려있는 부분은 0, 칸막이가 존재하는 부분은 1
+3. 구멍이 뚫려있는 부분끼리 상하좌우 붙어있다면 연결된 것으로 간주
+   
+key) 상하좌우를 탐색하면서 값이 0이면서 탐색하지 않은 부분 찾기를 N x M 회 반복
+
+```python
+n, m = map(int, input().split())
+
+graph = []
+for i in rnage(n):
+    graph.append(list(map(int, input())))
+
+def dfs(x, y):
+    if x <= -1 or x >= n or y <= -1 or y >= m:
+        return False
+    if graph[x][y] == 0:
+        graph[x][y] = 1
+        dfs(x - 1, y)
+        dfs(x, y - 1)
+        dfs(x + 1, y)
+        dfs(x, y + 1)
+        
+        return True
+    return False
+
+result = 0
+for i in range(n):
+    for j in range(m):
+        if dfs(i,j) == True:
+            result += 1
+
+print(result)
+
+#=> input 3 3
+#=> input 0 0 1
+#=> input 0 1 0
+#=> input 1 0 1
+
+#=> print 3
+
+```
+
+## 2.1 미로탈출
+
+N x M 크기의 미로에서 최단경로로 탈출하는 경로의 거리를 구하기
+
+1. 미로의 크기는 N x M
+2. 시작 위치는 (1,1), 탈출 위치는 (N,M)
+3. 한번에 한칸만 움직일 수 있다.
+4. 괴물이 있는 칸은 0 없는 칸은 1
+
+key) 상하좌우를 BFS를 이용해 찾으며 모든 노드의 값을 거리 정보로 넣기
+
+```python
+
+from collections import deque
+
+n, m = map(int, input().split())
+
+graph = []
+for i in rnage(n):
+    graph.append(list(map(int, input())))
+
+dx = [-1,1,0,0]
+dy = [0,0,-1,1]
+
+def bfs(x, y):
+    queue = deque()
+    queue.append((x,y))
+
+    while queue:
+        x, y = queue.popleft()
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if nx < 0 or ny < 0 or nx >= n or ny >= m:
+                continue
+            if graph[nx][ny] == 0:
+                continue
+            if graph[nx][ny] == 1:
+                graph[nx][ny] = graph[nx][ny] + 1
+                queue.append((nx,ny))
+    return graph[n - 1][m - 1]
+
+print(bfs(0,0))
+
+#=> input 5 6
+#=> input 1 0 1 0 1 0
+#=> input 1 1 1 1 1 1
+#=> input 0 0 0 0 0 1
+#=> input 1 1 1 1 1 1
+#=> input 1 1 1 1 1 1
+
+#=> print 10
+
+```
