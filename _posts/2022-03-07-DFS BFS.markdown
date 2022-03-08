@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "3. Greedy Algorithm"
+title:  "3. DFS/BFS"
 date:   2022-03-07 22:42:00 +0900
 categories: Algorithm Theory DFS BFS Python
 ---
